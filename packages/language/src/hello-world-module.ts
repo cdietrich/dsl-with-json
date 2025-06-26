@@ -3,6 +3,7 @@ import { createDefaultModule, createDefaultSharedModule, type DefaultSharedModul
 import { HelloWorldGeneratedModule, HelloWorldGeneratedSharedModule } from './generated/module.js';
 import { HelloWorldValidator, registerValidationChecks } from './hello-world-validator.js';
 import { HelloWorldDocumentUpdateHandler } from './hello-world-document-update-handler.js';
+import { HelloWorldWorkspaceManager } from './hello-world-workspace-manager.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -37,6 +38,9 @@ export const HelloWorldModule: Module<HelloWorldServices, PartialLangiumServices
 export const HelloWorldSharedModule: Module<LangiumSharedServices, PartialLangiumSharedServices> = {
     lsp: {
         DocumentUpdateHandler: (services) => new HelloWorldDocumentUpdateHandler(services)
+    },
+    workspace: {
+        WorkspaceManager: (services) => new HelloWorldWorkspaceManager(services)
     }
 };
 
